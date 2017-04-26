@@ -1,27 +1,35 @@
 package interactiondesigner.models;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Set;
 
 import interactiondesigner.models.Action;
 
 public class Interaction{
 	
-	private static HashMap<Integer, Action> actions;
+	public String name;
+	private HashMap<Integer, Action> actions;
 
-	public static void load(String filepath){
-		/** TO DO **/
-		actions = new HashMap<>();
-		if(filepath == null){
-			return;
+	public  Interaction(HashMap<Integer, Action> actions){
+		/** TO DO **/		
+		this.actions = actions;
+		if(actions == null){
+			this.actions = new HashMap<>();
 		}
 	}
 
-	public static Action get(int id){
+	public Action get(int id){
 		return actions.get((Integer)id);
 	}
 
-	public static boolean add(Action action){
+	public boolean add(Action action){
 		return actions.put(action.getId(),action) != null;
+	}
+
+	public Set<Integer> idSet(){
+		return actions.keySet();
 	}
 
 }

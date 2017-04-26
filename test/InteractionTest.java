@@ -14,10 +14,10 @@ public class InteractionTest{
 
 	@Test
 	public void canAddActions(){
-		Interaction.load(null);
+		Interaction interaction = new Interaction(null);		
 		Action act = new ActionMessage();
-		Interaction.add(act);		
-		assertEquals(Interaction.get(act.getId()),act);
+		interaction.add(act);		
+		assertEquals(interaction.get(act.getId()),act);
 	}
 
 }

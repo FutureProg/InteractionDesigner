@@ -1,16 +1,18 @@
 package interactiondesigner.models;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class InteractionTable{
 
-	private static HashMap<Integer,Integer[]> table;
+	private HashMap<Integer,Integer[]> table;
 
-	public static void load(String filepath){
+	public InteractionTable(HashMap<Integer, Integer[]> nTable){
 		/**  TODO  **/
-		table = new HashMap<>();
-		if(filepath == null){
-			return;
+		table = nTable;
+		if(table == null){
+			table = new HashMap<>();
 		}
 	}
 
@@ -18,7 +20,7 @@ public class InteractionTable{
 	 * @param source the id of the source action
 	 * @param destination the id of the destination action
 	 */
-	public static void connect(int source, int destination){
+	public void connect(int source, int destination){
 		Integer[] currentDests = table.get(source);
 		if(currentDests != null){
 			currentDests = table.get(source);
@@ -34,7 +36,7 @@ public class InteractionTable{
 		table.put(source, currentDests);
 	}
 
-	public static Integer[] getDestinations(int source){
+	public Integer[] getDestinations(int source){
 		Integer[] res = null;		
 		res = table.get(source);
 		return res;

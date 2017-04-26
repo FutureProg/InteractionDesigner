@@ -1,5 +1,5 @@
 all:
-	javac -d ./classes/ -Xlint:unchecked src/interationdesigner/InteractionDesigner.java src/interationdesigner/models/*.java
+	javac -d ./classes/ -Xlint:unchecked src/interationdesigner/InteractionDesigner.java src/interationdesigner/models/*.java src/interationdesigner/controllers/*.java
 
 run:
 	java -cp .:./classes/ interactiondesigner.InteractionDesigner

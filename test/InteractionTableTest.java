@@ -14,15 +14,15 @@ public class InteractionTableTest{
 
 	@Test
 	public void canConnect(){
-		InteractionTable.load(null);
-		InteractionTable.connect(act1.getId(), act2.getId());		
-		assertTrue(InteractionTable.getDestinations(act1.getId()).length == 1);
-		assertTrue(InteractionTable.getDestinations(act1.getId())[0] == act2.getId());
-		assertTrue(InteractionTable.getDestinations(act2.getId()) == null);
-		InteractionTable.connect(act1.getId(),act3.getId());
-		assertTrue(InteractionTable.getDestinations(act1.getId()).length == 2);
-		assertTrue(InteractionTable.getDestinations(act1.getId())[0] == act2.getId());
-		assertTrue(InteractionTable.getDestinations(act1.getId())[1] == act3.getId());
+		InteractionTable table = new InteractionTable(null);
+		table.connect(act1.getId(), act2.getId());		
+		assertTrue(table.getDestinations(act1.getId()).length == 1);
+		assertTrue(table.getDestinations(act1.getId())[0] == act2.getId());
+		assertTrue(table.getDestinations(act2.getId()) == null);		
+		table.connect(act1.getId(),act3.getId());
+		assertTrue(table.getDestinations(act1.getId()).length == 2);
+		assertTrue(table.getDestinations(act1.getId())[0] == act2.getId());
+		assertTrue(table.getDestinations(act1.getId())[1] == act3.getId());
 	}
 
 }

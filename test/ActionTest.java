@@ -13,6 +13,7 @@ public class ActionTest{
 		Action action = new Action(){
 			@Override
 			public void initProperties(){}
+			public String getName(){ return "";}
 		};
 		action.setProperty("key", "value");
 	}
@@ -23,6 +24,9 @@ public class ActionTest{
 			@Override
 			public void initProperties(){
 				properties.put("key", "");
+			}
+			public String getName(){
+				return "";
 			}
 		};
 		action.setProperty("key", "value");
