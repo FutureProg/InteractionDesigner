@@ -15,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 import interactiondesigner.InteractionDesigner;
 import interactiondesigner.models.*;
@@ -39,6 +40,7 @@ public class InteractionController{
 		if(filepath == null){
 			this.interaction = new Interaction(null);
 			this.interactionTable = new InteractionTable(null);
+			return;
 		}	
 		this.filepath = filepath;
 		File file = new File(filepath);
@@ -52,8 +54,8 @@ public class InteractionController{
 			String line = input.nextLine();
 			String[] data = line.split(delim);
 			Action action;
-			final String name = data[0];
-			final int id = Integer.parseInt(data[1]);
+			final String name = data[1];
+			final int id = Integer.parseInt(data[0]);
 			final int propertyCount = Integer.parseInt(data[2]);
 			final HashMap<String,Object> props = new HashMap<>();		
 
@@ -74,6 +76,7 @@ public class InteractionController{
 					return name;
 				}
 			};
+			interaction.add(action);
 
 			int conStart = propertyCount*2 + 3; // starting index for connections
 			int connectionCount = Integer.parseInt(data[conStart]);
@@ -92,6 +95,14 @@ public class InteractionController{
 		interaction.add(action);
 	}
 
+	public Action getAction(int id){
+		return interaction.get(id);
+	}
+
+	public Set<Integer> getActionIds(){
+		return interaction.idSet();
+	}
+
 	/**
 	 * Saves a file at <code>path</code> with the following format
 	 * META, 1, version, xx.xx.xx, name, abc
@@ -103,7 +114,7 @@ public class InteractionController{
 			path = this.filepath;
 		}
 		File file = new File(path);
-		if(!this.filepath.equals(path)){
+		if(this.filepath == null || !this.filepath.equals(path)){
 			file.createNewFile();
 		}
 		String delim = InteractionDesigner.DELIM;
@@ -111,11 +122,15 @@ public class InteractionController{
 		String meta = "META"+delim+"1"+delim+"version"+delim+InteractionDesigner.VERSION_STRING + delim + "name" + delim + interaction.name;
 		writer.write(meta+"\n");
 		for(Integer id: this.interaction.idSet()){
-			writer.write(interaction.get(id)+"");
+			writer.write(interaction.get(id).propertyString()+"");
 			Integer[] destinations =  this.interactionTable.getDestinations(id);
-			writer.write(delim+ destinations.length);
-			for(Integer dest : destinations){
-				writer.write(delim + dest.intValue());
+			if(destinations == null){
+				writer.write(delim + "0");
+			}else{
+				writer.write(delim+ destinations.length);
+				for(Integer dest : destinations){
+					writer.write(delim + dest.intValue());
+				}
 			}
 			writer.write("\n");
 		}

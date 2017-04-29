@@ -24,7 +24,7 @@ public class Interaction{
 		return actions.get((Integer)id);
 	}
 
-	public boolean add(Action action){
+	public boolean add(Action action){		
 		return actions.put(action.getId(),action) != null;
 	}
 
