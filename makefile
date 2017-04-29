@@ -4,7 +4,7 @@ testBuildPath = .:./libs/junit-4.jar:./classes
 
 classpath = .:./classes/
 mainclass = interactiondesigner.InteractionDesigner;
-buildTargets = src/interationdesigner/InteractionDesigner.java src/interationdesigner/models/*.java src/interationdesigner/controllers/*.java
+buildTargets = src/interationdesigner/InteractionDesigner.java src/interationdesigner/models/*.java src/interationdesigner/controllers/*.java src/interationdesigner/utils/*.java
 
 
 all:
