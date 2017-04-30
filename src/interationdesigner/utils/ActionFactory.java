@@ -11,21 +11,21 @@ import interactiondesigner.models.Action;
  */
 public class ActionFactory{
 
-	static HashMap<String, Action> actionTypes;
+	static HashMap<String, Action> actionTypes = new HashMap<>();
 
 	String name;
-	final HashSet<String> params;
+	final HashSet<String> props;
 
 	final static String FORBIDDEN_CHARS = " -.,[];\'/><:\"{}-=_+`~!@#$%^&*()|\\";
 
 	public ActionFactory(){
 		name = null;
-		params = new HashSet<>();
+		props = new HashSet<>();
 	}
 
-	public ActionFactory addParam(String paramName){
-		if(!params.add(paramName)){
-			throw new DuplicatePropertyException(msg);
+	public ActionFactory addProperty(String propName){
+		if(!props.add(propName)){
+			throw new DuplicatePropertyException("Duplicate property");
 		}
 		return this;
 	}
@@ -47,7 +47,7 @@ public class ActionFactory{
 		if(name == null){
 			throw new NullPointerException("name of action type not set!");
 		}
-		if(params.isEmpty()){
+		if(props.isEmpty()){
 			throw new EmptyPropertyListException("no parameters provided");
 		}
 		final String aName = this.name;	
@@ -59,7 +59,7 @@ public class ActionFactory{
 
 			@Override
 			public void initProperties(){
-				for(String key : params){
+				for(String key : props){
 					this.properties.put(key, "");
 				}
 			}

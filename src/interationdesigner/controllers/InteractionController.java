@@ -99,9 +99,70 @@ public class InteractionController{
 		return interaction.get(id);
 	}
 
+	/**
+	 * @return false if the child is already a member of the parent
+	 */
+	public boolean connectActions(Action parent, Action child){
+		if(interaction.get(parent.getId()) == null){
+			addAction(parent);
+		}		
+		if(interaction.get(child.getId()) == null){
+			addAction(child);
+		}
+		return connectActions(parent.getId(), child.getId());
+	}
+
+	/**
+	 * @return false if the child is already a member of the parent
+	 */
+	public boolean connectActions(int parentId, Action child){
+		if(interaction.get(child.getId()) == null){
+			addAction(child);
+		}
+		return connectActions(parentId, child.getId());
+	}
+
+	/**
+	 * @return false if the child is already a member of the parent
+	 */
+	public boolean connectActions(Action parent, int childId){
+		if(interaction.get(parent.getId()) == null){
+			addAction(parent);
+		}
+		return connectActions(parent.getId(), childId);
+	}
+
+	/**
+	 * @return false if the child is already a member of the parent
+	 */
+	public boolean connectActions(int parentId, int childId){
+		if(parentId == childId) return false;
+		if(!getActionIds().contains(parentId)){
+			throw new ActionNotFoundException("Action with id " + parentId + " not found");
+		}
+		if(!getActionIds().contains(childId)){
+			throw new ActionNotFoundException("Action with id " + childId + " not found");
+		}
+		return interactionTable.connect(parentId,childId);
+	}
+
 	public Set<Integer> getActionIds(){
 		return interaction.idSet();
 	}
+
+	public Action[] getNextActions(Action action){
+		return getNextActions(action.getId());
+	}
+
+	public Action[] getNextActions(int actionId){
+		Integer[] next = interactionTable.getDestinations(actionId);
+		Action[] re = new Action[next.length];
+		for(int i = 0; i < re.length;i++){
+			re[i] = interaction.get(next[i]);
+		}
+		return re;
+	}
+
 
 	/**
 	 * Saves a file at <code>path</code> with the following format
@@ -137,4 +198,9 @@ public class InteractionController{
 		writer.close();
 		return true;
 	}
+
+	public class ActionNotFoundException extends RuntimeException{
+		public ActionNotFoundException(String msg){super(msg);}
+	}
+
 }

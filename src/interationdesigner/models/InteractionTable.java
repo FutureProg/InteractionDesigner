@@ -20,13 +20,16 @@ public class InteractionTable{
 	 * @param source the id of the source action
 	 * @param destination the id of the destination action
 	 */
-	public void connect(int source, int destination){
+	public boolean connect(int source, int destination){
 		Integer[] currentDests = table.get(source);
 		if(currentDests != null){
 			currentDests = table.get(source);
 			Integer[] nDests = new Integer[currentDests.length+1];
 			for(int i = 0; i < currentDests.length;i++){
-				nDests[i] = currentDests[i];
+				if(currentDests[i] == destination){
+					return false;
+				}
+				nDests[i] = currentDests[i];				
 			}
 			currentDests = nDests;
 		}else{
@@ -34,6 +37,7 @@ public class InteractionTable{
 		}
 		currentDests[currentDests.length-1] = destination;
 		table.put(source, currentDests);
+		return true;
 	}
 
 	public Integer[] getDestinations(int source){
