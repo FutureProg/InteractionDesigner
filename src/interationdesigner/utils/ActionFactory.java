@@ -3,6 +3,7 @@ package interactiondesigner.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import interactiondesigner.models.Action;
 
@@ -17,6 +18,31 @@ public class ActionFactory{
 	final HashSet<String> props;
 
 	final static String FORBIDDEN_CHARS = " -.,[];\'/><:\"{}-=_+`~!@#$%^&*()|\\";
+
+	public static Action createAction(String nName, Map<String, Object> nProps){
+		Action action = createAction(nName);
+		if(action == null)return null;
+		for(String key : nProps.keySet()){
+			action.setProperty(key, nProps.get(key));
+		}
+		return action;
+	}
+
+	public static Action createAction(String nName){
+		final Action base = actionTypes.get(nName);
+		if(base == null) return null;
+		Action act = new Action(){
+			public String getName(){
+				return base.getName();
+			}
+			public void initProperties(){
+				for(String key : base.listProperties()){
+					this.properties.put(key,"");
+				}
+			}
+		};
+		return act;
+	}
 
 	public ActionFactory(){
 		name = null;

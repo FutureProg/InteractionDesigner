@@ -1,4 +1,4 @@
-tests = ActionTest InteractionTableTest InteractionTest InteractionControllerTest
+tests = ActionTest InteractionTableTest InteractionTest InteractionControllerTest ActionFactoryTest
 testClasspath = .:./libs/junit-4.jar:./libs/hamcrest-core-1.3.jar:./classes:./test/classes/
 testBuildPath = .:./libs/junit-4.jar:./classes
 

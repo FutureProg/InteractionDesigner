@@ -27,9 +27,6 @@ public class InteractionController{
 	InteractionTable interactionTable;
 	Interaction interaction;
 
-	/**
-	 * A null filepath signifies that a new file is being created
-	 */
 	public InteractionController(){				
 	}
 
@@ -168,12 +165,15 @@ public class InteractionController{
 	 * Saves a file at <code>path</code> with the following format
 	 * META, 1, version, xx.xx.xx, name, abc
 	 * action name, action id, property count, <properties>, destination count, <destinations>
-	 * @return true on success
+	 * @return true on success, false if no file path is specified
 	 */
-	public boolean save(String path) throws IOException{				
+	public boolean save(String path) throws IOException{	
 		if(path == null){
+			if(this.filepath == null){
+				return false;
+			}
 			path = this.filepath;
-		}
+		}			
 		File file = new File(path);
 		if(this.filepath == null || !this.filepath.equals(path)){
 			file.createNewFile();

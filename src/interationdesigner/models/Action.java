@@ -37,8 +37,8 @@ public abstract class Action{
 		return properties.get(key);
 	}
 
-	public String[] listProperties(){
-		return (String[])properties.keySet().toArray();
+	public String[] listProperties(){		
+		return (String[])properties.keySet().toArray(new String[1]);
 	}
 
 	public String propertyString(){		
