@@ -34,4 +34,7 @@ hs_err_pid*
 ### OSX ###
 .DS_Store
 
+### Gradle ###
+.gradle
+
 # End of https://www.gitignore.io/api/java,visualstudiocode
