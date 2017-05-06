@@ -1,3 +1,5 @@
+package interactiondesigner.models;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 

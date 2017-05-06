@@ -1,7 +1,5 @@
 package interactiondesigner.models;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.HashMap;
 
 public class InteractionTable{

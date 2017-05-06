@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="interactiondesigner.utils.ActionFactoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-05-06T15:51:25" hostname="Nickolass-MacBook-Pro.local" time="0.004">
+  <properties/>
+  <testcase name="createsActionType" classname="interactiondesigner.utils.ActionFactoryTest" time="0.001"/>
+  <testcase name="throwsEmptyPropertyListException" classname="interactiondesigner.utils.ActionFactoryTest" time="0.0"/>
+  <testcase name="thorwsNullPointerWhenNameEmpty" classname="interactiondesigner.utils.ActionFactoryTest" time="0.0"/>
+  <testcase name="throwsDuplicatePropertyException" classname="interactiondesigner.utils.ActionFactoryTest" time="0.0"/>
+  <testcase name="throwsNameTakenException" classname="interactiondesigner.utils.ActionFactoryTest" time="0.0"/>
+  <testcase name="throwsInvalidNameException" classname="interactiondesigner.utils.ActionFactoryTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -17,9 +17,19 @@ repositories{
 	mavenCentral()
 }
 
+dependencies {    
+    compile files("libs/jfxrt.jar")
+    testCompile 'junit:junit:4.12'
+}
+
+test{
+    
+}
+
 apply plugin: 'javafx-gradle-plugin'
 
 jfx{
 	verbose = true
 	mainClass = 'interactiondesigner.InteractionDesigner'
+    appName = "Interaction Designer"
 }

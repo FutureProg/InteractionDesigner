@@ -1,3 +1,5 @@
+package interactiondesigner.utils;
+
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;

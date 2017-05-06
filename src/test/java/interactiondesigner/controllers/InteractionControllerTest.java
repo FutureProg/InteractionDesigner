@@ -1,3 +1,5 @@
+package interactiondesigner.controllers;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Set;
@@ -47,7 +49,7 @@ public class InteractionControllerTest{
 			}
 		});
 		try{
-			controller.save("./test/interactionTestOutput.idf");
+			controller.save("interactionTestOutput.idf");
 		}catch(IOException exc){
 			fail("Error saving file to ./test/interactionTestOutput.idf" + exc.getMessage());
 		}
@@ -57,7 +59,7 @@ public class InteractionControllerTest{
 	public void loadsInteractionFromFile(){
 		controller = new InteractionController();
 		try{
-			controller.load("./test/interactionTestOutput.idf");
+			controller.load("interactionTestOutput.idf");
 		}catch(IOException exc){
 			fail("Unable to load file at path ./test/interactionTestOutput.idf" + exc.getMessage());
 		}

@@ -46,6 +46,7 @@ public class InteractionController{
 		this.interaction = new Interaction(null);
 
 		String metadata = input.nextLine();//this line contains the metadata
+		System.out.println("file version: " + metadata.split(InteractionDesigner.DELIM)[3]);
 		HashMap<Integer, Integer[]> table = new HashMap<>();
 		while(input.hasNextLine()){
 			String line = input.nextLine();
@@ -83,6 +84,7 @@ public class InteractionController{
 			}
 			table.put(id, cons); // add to the interaction table
 		}
+		input.close();
 
 		this.interactionTable = new InteractionTable(table); // create the interaction table container
 		
