@@ -32,4 +32,6 @@ jfx{
 	verbose = true
 	mainClass = 'interactiondesigner.InteractionDesigner'
     appName = "Interaction Designer"
+    css2bin = true
+    copyAdditionalAppResourcesToJar = true
 }

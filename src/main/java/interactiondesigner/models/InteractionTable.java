@@ -6,8 +6,7 @@ public class InteractionTable{
 
 	private HashMap<Integer,Integer[]> table;
 
-	public InteractionTable(HashMap<Integer, Integer[]> nTable){
-		/**  TODO  **/
+	public InteractionTable(HashMap<Integer, Integer[]> nTable){		
 		table = nTable;
 		if(table == null){
 			table = new HashMap<>();

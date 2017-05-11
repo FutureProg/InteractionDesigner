@@ -1,6 +1,7 @@
 package interactiondesigner.models;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import interactiondesigner.InteractionDesigner;
 
@@ -35,6 +36,10 @@ public abstract class Action{
 
 	public Object getProperty(String key){
 		return properties.get(key);
+	}
+
+	public Map<String,Object> getProperties(){
+		return this.properties;
 	}
 
 	public String[] listProperties(){		
