@@ -25,24 +25,29 @@ import javafx.scene.shape.Line;
 public class NodeRegion extends Region{
 
 	Node currentStartNode; // for connections
+	HashMap<Integer, ArrayList<CubicCurve>> curveMap;
 
 	public NodeRegion(){		
 		this.getStylesheets().add(Resources.getStylesheet("stylesheet"));	
 		this.addEventFilter(ConnectionEvent.CONNECTION_REQUEST, connectionRequestHandler);
 		this.addEventFilter(ConnectionEvent.CONNECT_EVENT, connectEventHandler);	
+		curveMap = new HashMap<>();
 		test();	
 	}
 
 	private void test(){
+		InteractionController controller = Resources.fetchInteractionController();		
 		Action action = new ActionFactory().setName("name").addProperty("propName").addProperty("propName2").build();
 		ActionNode node = new ActionNode(action,10,20);		
 		node.setMovementCallback(nodeDragCallback);
 		this.getChildren().add(node);
+		controller.addAction(action);
 
 		action = ActionFactory.createAction("name");
 		node = new ActionNode(action, 400, 20);
 		node.setMovementCallback(nodeDragCallback);
 		this.getChildren().add(node);
+		controller.addAction(action);
 	}
 
 	private CubicCurve createCurve(Node n1, Node n2){
@@ -68,6 +73,27 @@ public class NodeRegion extends Region{
 		curve.setStroke(Color.BLACK);
 
 		return curve;
+	}
+
+	private void addCurve(int sourceId, int destId, CubicCurve curve){
+		if(curveMap.containsKey(sourceId)){
+			curveMap.get(sourceId).add(curve);
+		}else{
+			curveMap.put(sourceId, new ArrayList<CubicCurve>());
+			curveMap.get(sourceId).add(curve);
+		}
+		if(curveMap.containsKey(destId)){
+			curveMap.get(destId).add(curve);
+		}else{
+			curveMap.put(destId, new ArrayList<CubicCurve>());
+			curveMap.get(destId).add(curve);
+		}
+	}
+
+	private void updateCurve(int actionId){
+		InteractionController controller = Resources.fetchInteractionController();
+		controller.getNextActions(actionId);
+		
 	}
 
 	
@@ -98,7 +124,7 @@ public class NodeRegion extends Region{
 		if(controller.connectActions(startNode.getActionId(), endNode.getActionId())){
 			CubicCurve curve = createCurve(currentStartNode, endNode);	
 			NodeRegion.this.getChildren().add(curve);				
-		}		
+		}
 		/*Line line = new Line(currentStartNode.getTranslateX()+currentStartNode.getLayoutBounds().getWidth(),startY,
 								endNode.getTranslateX(),endY);
 		NodeRegion.this.getChildren().add(line);*/

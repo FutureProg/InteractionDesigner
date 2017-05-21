@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="interactiondesigner.models.ActionTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-05-08T19:15:25" hostname="Nickolass-MacBook-Pro.local" time="0.003">
+<testsuite name="interactiondesigner.models.ActionTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-05-17T14:23:43" hostname="Nickolass-MacBook-Pro.local" time="0.001">
   <properties/>
-  <testcase name="throwsError" classname="interactiondesigner.models.ActionTest" time="0.002"/>
+  <testcase name="throwsError" classname="interactiondesigner.models.ActionTest" time="0.0"/>
   <testcase name="setsProperty" classname="interactiondesigner.models.ActionTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

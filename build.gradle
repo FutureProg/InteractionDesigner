@@ -33,5 +33,5 @@ jfx{
 	mainClass = 'interactiondesigner.InteractionDesigner'
     appName = "Interaction Designer"
     css2bin = true
-    copyAdditionalAppResourcesToJar = true
+    copyAdditionalAppResourcesToJar = true        
 }

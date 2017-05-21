@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="interactiondesigner.controllers.InteractionControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-05-08T19:15:24" hostname="Nickolass-MacBook-Pro.local" time="0.012">
+<testsuite name="interactiondesigner.controllers.InteractionControllerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-05-17T14:23:43" hostname="Nickolass-MacBook-Pro.local" time="0.013">
   <properties/>
   <testcase name="savesInteractionToFile" classname="interactiondesigner.controllers.InteractionControllerTest" time="0.004"/>
-  <testcase name="loadsInteractionFromFile" classname="interactiondesigner.controllers.InteractionControllerTest" time="0.007"/>
-  <testcase name="createsNewInteraction" classname="interactiondesigner.controllers.InteractionControllerTest" time="0.001"/>
+  <testcase name="loadsInteractionFromFile" classname="interactiondesigner.controllers.InteractionControllerTest" time="0.008"/>
+  <testcase name="createsNewInteraction" classname="interactiondesigner.controllers.InteractionControllerTest" time="0.0"/>
   <system-out><![CDATA[file version: 0.0.1
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

@@ -134,14 +134,14 @@ public class InteractionController{
 	/**
 	 * @return false if the child is already a member of the parent
 	 */
-	public boolean connectActions(int parentId, int childId){
+	public boolean connectActions(int parentId, int childId){		
 		if(parentId == childId) return false;
 		if(!getActionIds().contains(parentId)){
 			throw new ActionNotFoundException("Action with id " + parentId + " not found");
 		}
 		if(!getActionIds().contains(childId)){
 			throw new ActionNotFoundException("Action with id " + childId + " not found");
-		}
+		}		
 		return interactionTable.connect(parentId,childId);
 	}
 
