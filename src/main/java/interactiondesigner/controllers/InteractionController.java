@@ -149,12 +149,31 @@ public class InteractionController{
 		return interaction.idSet();
 	}
 
+	public Action[] getPreviousActions(Action action){
+		return getPreviousActions(action.getId());
+	}
+
+	public Action[] getPreviousActions(int actionId){
+		Integer[] prev = interactionTable.getSources(actionId);
+		if(prev == null){
+			return null;
+		}
+		Action[] re = new Action[prev.length];
+		for(int i = 0; i < re.length;i++){
+			re[i] = interaction.get(prev[i]);
+		}
+		return re;
+	}
+
 	public Action[] getNextActions(Action action){
 		return getNextActions(action.getId());
 	}
 
 	public Action[] getNextActions(int actionId){
 		Integer[] next = interactionTable.getDestinations(actionId);
+		if(next == null){
+			return null;
+		}
 		Action[] re = new Action[next.length];
 		for(int i = 0; i < re.length;i++){
 			re[i] = interaction.get(next[i]);

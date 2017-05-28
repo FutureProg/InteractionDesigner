@@ -1,5 +1,7 @@
 package interactiondesigner.models;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class InteractionTable{
@@ -43,4 +45,16 @@ public class InteractionTable{
 		return res;
 	}
 
+	public Integer[] getSources(int destination){
+		ArrayList<Integer> re = new ArrayList<>();
+		for(Integer source : table.keySet()){
+			Integer[] duplicate = Arrays.copyOf(table.get(source), table.get(source).length);			
+			Arrays.sort(duplicate);
+			if(Arrays.binarySearch(duplicate, destination) >= 0){
+				re.add(source);
+			}
+		}
+		return re.toArray(new Integer[re.size()]);
+	}
+	
 }

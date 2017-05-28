@@ -103,10 +103,10 @@ public class ActionNode extends VBox{
 		double dX = evt.getSceneX() - origSceneX;
 		double dY = evt.getSceneY() - origSceneY;
 		this.setTranslateX(dX + origX);
-		this.setTranslateY(dY + origY);
-		if(ActionNode.this.nodeMovementCallback != null){
+		this.setTranslateY(dY + origY);	
+		if(ActionNode.this.nodeMovementCallback != null){		
 			ActionNode.this.nodeMovementCallback.handle(evt);
-		}
+		}			
 	};
 
 }
