@@ -7,11 +7,16 @@ import java.util.function.Function;
 import java.util.function.ToIntFunction;
 import java.util.stream.Stream;
 
+import javax.inject.Inject;
 import javax.naming.directory.NoSuchAttributeException;
 import javax.xml.stream.events.EndDocument;
 
 import interactiondesigner.controllers.InteractionController;
+import interactiondesigner.dagger.*;
 import interactiondesigner.event.ConnectionEvent;
+import interactiondesigner.event.DispatchEvent;
+import interactiondesigner.event.EventStore;
+import interactiondesigner.event.EventStore.Subscriber;
 import interactiondesigner.models.Action;
 import interactiondesigner.models.InteractionTable;
 import interactiondesigner.utils.ActionFactory;
@@ -29,19 +34,31 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurve;
 import javafx.scene.shape.Line;
 
-public class NodeRegion extends Region{
+public class NodeRegion extends Region implements Subscriber{
 
 	Node currentStartNode; // for connections
 	CoordMap<Integer, CubicCurve> curveMap;
 	HashMap<Integer, ActionNode> nodeMap;
 
+	@Inject EventStore eventStore;
+
 	public NodeRegion(){		
 		this.getStylesheets().add(Resources.getStylesheet("stylesheet"));	
 		this.addEventFilter(ConnectionEvent.CONNECTION_REQUEST, connectionRequestHandler);
 		this.addEventFilter(ConnectionEvent.CONNECT_EVENT, connectEventHandler);	
+		DaggerDependencyComponent.builder().eventStoreModule(Resources.getEventStoreModule()).build().inject(this);
+		eventStore.subscribe(this);	
 		curveMap = new CoordMap<>();
-		nodeMap = new HashMap<>();
+		nodeMap = new HashMap<>();		
 		test();	
+	}
+
+	@Override
+	public void receiveDispatch(DispatchEvent evt){
+		Action action = ActionFactory.createAction("name");
+		ActionNode node = new ActionNode(action,10,10);
+		this.addNode(node);
+		Resources.fetchInteractionController().addAction(action);
 	}
 
 	private void test(){

@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Permissions: sandbox
-JavaFX-Version: 8.0
-Class-Path: lib/jfxrt.jar
-Created-By: JavaFX Packager
-Main-Class: interactiondesigner.InteractionDesigner
-

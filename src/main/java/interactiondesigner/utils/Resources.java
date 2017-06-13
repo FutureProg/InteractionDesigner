@@ -4,12 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.inject.Singleton;
+
 import interactiondesigner.controllers.InteractionController;
+import interactiondesigner.dagger.EventStoreModule;
+import interactiondesigner.event.EventStore;
 
 public class Resources{
 
 	private static ArrayList<InteractionController> controllers = new ArrayList<>();
-	private static int currentController = -1;	
+	private static int currentController = -1;
+	private static EventStoreModule eventStoreModule;	
 
 	public static InteractionController loadFile(String filepath) throws IOException, FileNotFoundException{
 		InteractionController controller = new InteractionController();
@@ -46,6 +51,17 @@ public class Resources{
 
 	public static String getStylesheet(String name){		
 		return "styles/" + name + (name.endsWith(".css") ? "" : ".css");
+	}
+
+	public static class DispatchEventType{		
+		public static final String EVENT_TYPE_NEW_ACTION_NODE = "NEW_ACTION_NODE";
+	}
+
+	public static EventStoreModule getEventStoreModule(){
+		if(eventStoreModule == null){
+			eventStoreModule = new EventStoreModule(new EventStore());
+		}
+		return eventStoreModule;
 	}
 
 }
