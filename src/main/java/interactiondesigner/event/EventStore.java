@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;
+import interactiondesigner.utils.Resources.DispatchEventType;
 
 @Singleton
 public class EventStore{	
@@ -20,7 +21,7 @@ public class EventStore{
 		subscribers.add(subscriber);
 	}
 
-	public EventBuilder createEvent(String eventType){
+	public EventBuilder createEvent(DispatchEventType eventType){
 		return new EventBuilder(eventType);
 	}
 
@@ -39,7 +40,7 @@ public class EventStore{
 		DispatchEvent event;
 		EventStore store;
 
-		public EventBuilder(String eventType){
+		public EventBuilder(DispatchEventType eventType){
 			this.event = new DispatchEvent(eventType);
 		}
 

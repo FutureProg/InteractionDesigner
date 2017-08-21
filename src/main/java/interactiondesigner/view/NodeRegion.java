@@ -55,10 +55,12 @@ public class NodeRegion extends Region implements Subscriber{
 
 	@Override
 	public void receiveDispatch(DispatchEvent evt){
-		Action action = ActionFactory.createAction("name");
+		if(evt.eventType == Resources.DispatchEventType.NEW_ACTION_NODE){
+			Action action = ActionFactory.createAction("name");
 		ActionNode node = new ActionNode(action,10,10);
 		this.addNode(node);
 		Resources.fetchInteractionController().addAction(action);
+		}		
 	}
 
 	private void test(){

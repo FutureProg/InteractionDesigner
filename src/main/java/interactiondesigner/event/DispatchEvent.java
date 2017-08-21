@@ -2,14 +2,16 @@ package interactiondesigner.event;
 
 import java.util.Properties;
 
+import interactiondesigner.utils.Resources.DispatchEventType;
+
 public class DispatchEvent{
 
-	public final String eventType;
+	public final DispatchEventType eventType;
 	public final Properties props = new Properties();
 	public boolean consumed = false;
 
-	public DispatchEvent(String eventType){
-		this.eventType = eventType;		
-	}
+	public DispatchEvent(DispatchEventType eventType){
+		this.eventType = eventType;
+	}	
 
 }

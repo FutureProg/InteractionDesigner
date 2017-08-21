@@ -8,7 +8,9 @@ import dagger.Component;
 
 import interactiondesigner.event.EventStore;
 import interactiondesigner.utils.Resources;
+import interactiondesigner.utils.Resources.DispatchEventType;
 import interactiondesigner.view.NodeRegion;
+import interactiondesigner.modals.PropertiesModal;
 import interactiondesigner.dagger.*;
 import javafx.application.*;
 import javafx.scene.Scene;
@@ -72,8 +74,16 @@ public class InteractionDesigner extends Application{
 		Menu menuEdit = new Menu("Edit");
 		MenuItem item = new MenuItem("create node");
 		item.setOnAction((evt) ->{
-			eventStore.createEvent(Resources.DispatchEventType.EVENT_TYPE_NEW_ACTION_NODE).dispatch();
+			eventStore.createEvent(DispatchEventType.NEW_ACTION_NODE).dispatch();
 		});
+		menuEdit.getItems().add(item);
+
+		item = new MenuItem("properties...");
+		item.setOnAction((evt)->{
+			eventStore.createEvent(DispatchEventType.OPEN_PROPERTIES).dispatch();
+			PropertiesModal modal = new PropertiesModal(stage);			
+			modal.show();
+		});		
 		menuEdit.getItems().add(item);
 
 		Menu menuView = new Menu("View");

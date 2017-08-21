@@ -53,8 +53,19 @@ public class Resources{
 		return "styles/" + name + (name.endsWith(".css") ? "" : ".css");
 	}
 
-	public static class DispatchEventType{		
-		public static final String EVENT_TYPE_NEW_ACTION_NODE = "NEW_ACTION_NODE";
+	public static enum DispatchEventType{		
+		NEW_ACTION_NODE("NEW_ACTION_NODE"),
+		OPEN_PROPERTIES("OPEN_PROPERTIES");
+
+		private final String text;
+		private DispatchEventType(String str){
+			this.text = str;
+		}
+
+		@Override
+		public String toString(){
+			return text;
+		}
 	}
 
 	public static EventStoreModule getEventStoreModule(){
