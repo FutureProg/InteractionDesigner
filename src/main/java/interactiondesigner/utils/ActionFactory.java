@@ -1,10 +1,13 @@
 package interactiondesigner.utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
 import interactiondesigner.models.Action;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 
 /**
  * Used to create types of actions for the project
@@ -12,6 +15,11 @@ import interactiondesigner.models.Action;
 public class ActionFactory{
 
 	static HashMap<String, Action> actionTypes = new HashMap<>();
+	public static ObservableListBase<String> actionNames = new ObservableListBase<String>(){
+		ArrayList<String> names = new ArrayList<>();
+		@Override public String get(int index){return actionNames.get(index);}		
+		@Override public int size(){return actionNames.size();}
+	};
 
 	String name;
 	final HashSet<String> props;
